@@ -1,66 +1,205 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chat Assistant</title>
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="style.css" />
-  </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'Oréal, world leader in beauty : makeup, cosmetics, haircare, perfume</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="font-sans">
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+        <div class="container mx-auto px-4">
+            <!-- Top Navigation -->
+            <div class="flex justify-between items-center py-2 text-sm border-b">
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-600 hover:text-black">Group</a>
+                    <a href="#" class="text-gray-600 hover:text-black">Commitments</a>
+                    <a href="#" class="text-gray-600 hover:text-black">Brands</a>
+                    <a href="#" class="text-gray-600 hover:text-black">Beauty Science</a>
+                    <a href="#" class="text-gray-600 hover:text-black">Careers</a>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-600 hover:text-black">Journalists</a>
+                    <a href="#" class="text-gray-600 hover:text-black">Suppliers</a>
+                    <a href="#" class="text-gray-600 hover:text-black">Investors & Shareholders</a>
+                </div>
+            </div>
+            
+            <!-- Main Navigation -->
+            <nav class="flex justify-between items-center py-4">
+                <div class="text-2xl font-bold">
+                    <a href="#" class="text-black">L'ORÉAL</a>
+                </div>
+                
+                <div class="flex items-center space-x-8">
+                    <a href="#" class="btn-link">Our Global Brands</a>
+                    <a href="#" class="btn-link">Portfolio</a>
+                    <a href="#" class="btn-link">Careers</a>
+                    <a href="#" class="btn-link">Our latest news</a>
+                    
+                    <!-- Search -->
+                    <div class="relative">
+                        <input type="text" placeholder="Define your Search..." class="pl-4 pr-10 py-2 border border-gray-300 rounded-full focus:outline-none focus:border-black">
+                        <i class="fas fa-search absolute right-3 top-3 text-gray-400"></i>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
 
-  <body>
-    <div class="page-wrapper">
-      <!------- Header / Branding ------->
-      <header class="site-header">
-        <h1 class="site-title">Smart Product Advisor</h1>
-      </header>
+    <!-- Hero Section -->
+    <section class="hero-gradient py-20">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="fade-in">
+                    <h1 class="text-6xl font-light mb-6">
+                        <span class="block">De toutes</span>
+                        <span class="block font-bold">beautés</span>
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-8">Discover More</p>
+                    <button class="btn-base btn-primary">See More</button>
+                </div>
+                
+                <div class="fade-in">
+                    <h2 class="text-5xl font-light mb-6">
+                        <span class="block">Essentiality</span>
+                        <span class="block">of beauty</span>
+                    </h2>
+                    <button class="btn-base btn-secondary">Discover</button>
+                </div>
+            </div>
+        </div>
+    </section>
 
-      <!------- Chat Area ------->
-      <main>
-        <section class="chatbox">
-          <div id="chatWindow" class="chat-window">
-            <!-- messages will be appended here via JS -->
-          </div>
+    <!-- Stories Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-4xl font-light mb-6">
+                    <span class="block">Discover</span>
+                    <span class="block font-bold">Our beautiful stories</span>
+                </h2>
+                
+                <p class="text-lg text-gray-600 leading-relaxed mb-8">
+                    L'Oréal has set itself the mission of offering all women and men worldwide the best of cosmetics 
+                    innovation in terms of quality, efficacy and safety. Here's a look at the Group's latest stories.
+                </p>
+                
+                <button class="btn-base btn-outline">Find out more about L'Oréal</button>
+            </div>
+        </div>
+    </section>
 
-          <form id="chatForm" class="chat-form">
-            <label for="userInput" class="visually-hidden">Message</label>
-            <input
-              id="userInput"
-              name="userInput"
-              type="text"
-              placeholder="Ask me about products or routines…"
-              autocomplete="off"
-              required
-            />
-            <button type="submit" id="sendBtn">
-              <span class="material-icons">send</span>
-              <span class="visually-hidden">Send</span>
-            </button>
-          </form>
-        </section>
-      </main>
+    <!-- Featured Content Grid -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="h-48 bg-gradient-to-br from-pink-100 to-purple-100 mb-6 rounded"></div>
+                    <h3 class="text-xl font-semibold mb-4">Innovation & Research</h3>
+                    <p class="text-gray-600 mb-4">Discover our latest breakthroughs in beauty science and cosmetic innovation.</p>
+                    <a href="#" class="btn-link">Learn More</a>
+                </div>
+                
+                <div class="bg-white p-8 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="h-48 bg-gradient-to-br from-blue-100 to-green-100 mb-6 rounded"></div>
+                    <h3 class="text-xl font-semibold mb-4">Sustainability</h3>
+                    <p class="text-gray-600 mb-4">Our commitment to creating a more sustainable and inclusive world of beauty.</p>
+                    <a href="#" class="btn-link">Explore</a>
+                </div>
+                
+                <div class="bg-white p-8 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="h-48 bg-gradient-to-br from-yellow-100 to-orange-100 mb-6 rounded"></div>
+                    <h3 class="text-xl font-semibold mb-4">Global Brands</h3>
+                    <p class="text-gray-600 mb-4">Explore our portfolio of iconic beauty brands loved worldwide.</p>
+                    <a href="#" class="btn-link">Discover</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-      <!------- Footer Links ------->
-      <footer class="site-footer">
-        <p>&copy; 2025 Company Name. All rights reserved.</p>
-        <nav>
-          <!-- These URLs are placeholders -->
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Use</a>
-          <a href="#">Contact</a>
-        </nav>
-      </footer>
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h4 class="font-semibold mb-4">Group</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:text-white">About L'Oréal</a></li>
+                        <li><a href="#" class="hover:text-white">Leadership</a></li>
+                        <li><a href="#" class="hover:text-white">History</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Commitments</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:text-white">Sustainability</a></li>
+                        <li><a href="#" class="hover:text-white">Diversity & Inclusion</a></li>
+                        <li><a href="#" class="hover:text-white">Ethics</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Brands</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:text-white">Consumer Products</a></li>
+                        <li><a href="#" class="hover:text-white">Professional Products</a></li>
+                        <li><a href="#" class="hover:text-white">Active Cosmetics</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Beauty Science</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:text-white">Research & Innovation</a></li>
+                        <li><a href="#" class="hover:text-white">Open Innovation</a></li>
+                        <li><a href="#" class="hover:text-white">Patents</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex justify-between items-center">
+                    <div class="flex space-x-6 text-sm text-gray-400">
+                        <a href="#" class="hover:text-white">Cookie settings</a>
+                        <a href="#" class="hover:text-white">Terms of use</a>
+                        <a href="#" class="hover:text-white">Privacy Policy</a>
+                        <a href="#" class="hover:text-white">Our Policies around the World</a>
+                        <a href="#" class="hover:text-white">Accessibility assessment</a>
+                    </div>
+                    
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+    <!-- AI Chatbot Toggle Button -->
+    <button id="chatbotToggle" class="btn-base btn-primary" style="position: fixed; bottom: 24px; right: 24px; z-index: 1000;">
+      Chat with AI
+    </button>
+
+    <!-- AI Chatbot Window -->
+    <div id="chatbotWindow" style="display: none; position: fixed; bottom: 80px; right: 24px; width: 320px; max-height: 400px; background: #fff; border-radius: 8px; box-shadow: 0 2px 16px rgba(0,0,0,0.15); z-index: 1000; flex-direction: column;">
+      <div style="padding: 12px; border-bottom: 1px solid #eee; font-weight: bold;">AI Chatbot</div>
+      <div id="chatbotMessages" style="flex: 1; padding: 12px; overflow-y: auto; font-size: 0.95rem; min-height: 120px;"></div>
+      <form id="chatbotForm" style="display: flex; border-top: 1px solid #eee;">
+        <input id="chatbotInput" type="text" placeholder="Type your message..." style="flex: 1; padding: 8px; border: none; outline: none;">
+        <button type="submit" class="btn-base btn-primary" style="border-radius: 0 0 8px 0;">Send</button>
+      </form>
     </div>
 
-    <!-- secrets.js can be removed when using Cloudflare Workers for API requests -->
-    <script src="secrets.js"></script>
-    <script src="script.js"></script>
-  </body>
+</body>
 </html>
