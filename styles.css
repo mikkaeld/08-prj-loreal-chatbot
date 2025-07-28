@@ -247,3 +247,195 @@ html {
     34%, 66% { content: ".."; }
     67%, 100% { content: "..."; }
 }
+
+.chat-button {
+    position: fixed !important;
+    bottom: 20px !important;
+    right: 20px !important;
+    width: 60px !important;
+    height: 60px !important;
+    border-radius: 50% !important;
+    background-color: white !important;
+    cursor: pointer !important;
+    border: 2px solid #000 !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: hidden !important;
+}
+
+.chat-button img {
+    width: 80% !important;
+    height: 80% !important;
+    object-fit: contain !important;
+}
+
+.chat-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Markdown Styles in Chat */
+.markdown-content {
+    color: #333;
+}
+
+.markdown-content p {
+    margin: 0.5em 0;
+}
+
+.markdown-content ul, 
+.markdown-content ol {
+    margin: 0.5em 0;
+    padding-left: 1.5em;
+}
+
+.markdown-content li {
+    margin: 0.25em 0;
+}
+
+.markdown-content strong {
+    font-weight: 600;
+}
+
+.markdown-content em {
+    font-style: italic;
+}
+
+.markdown-content code {
+    background: #f5f5f5;
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-size: 0.9em;
+    font-family: monospace;
+}
+
+.markdown-content a {
+    color: #000;
+    text-decoration: underline;
+}
+
+.markdown-content a:hover {
+    opacity: 0.8;
+}
+
+/* Chatbot Animations */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+    50% {
+        opacity: 0.9;
+        transform: scale(1.1);
+    }
+    80% {
+        opacity: 1;
+        transform: scale(0.89);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes typingIndicator {
+    0% { opacity: 0.4; }
+    50% { opacity: 1; }
+    100% { opacity: 0.4; }
+}
+
+/* Assistant Toggle Buttons */
+#femaleAssistant, #maleAssistant {
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    color: white;
+}
+
+#femaleAssistant:hover, #maleAssistant:hover {
+    background: rgba(255,255,255,0.3) !important;
+}
+
+#femaleAssistant.active, #maleAssistant.active {
+    background: white !important;
+    color: black !important;
+}
+
+/* Chatbot Window Animations */
+#chatbotWindow {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: bottom right;
+}
+
+#chatbotWindow.show {
+    animation: slideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#chatbotWindow.hide {
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+}
+
+/* Message Animations */
+.user-message, .assistant-message {
+    animation: slideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.assistant-message img {
+    animation: bounceIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Typing Indicator Animation */
+.typing-indicator {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    gap: 4px;
+    animation: fadeIn 0.3s ease;
+}
+
+.typing-indicator span {
+    width: 4px;
+    height: 4px;
+    background: #888;
+    border-radius: 50%;
+    animation: typingIndicator 1s infinite;
+}
+
+.typing-indicator span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.typing-indicator span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+/* Assistant Switch Animation */
+#assistantLogo, #assistantTitle {
+    transition: all 0.3s ease;
+}
+
+#assistantLogo.switch, #assistantTitle.switch {
+    animation: fadeIn 0.3s ease;
+}

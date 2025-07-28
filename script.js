@@ -396,8 +396,11 @@ if (typeof module !== 'undefined' && module.exports) {
 
 // Store conversation history
 let chatbotMessages = [
-  { role: "system", content: "You are a helpful assistant." }
+  { role: "system", content: "You are a helpful assistant for L'oreal customers, specializing in female beauty products. Your goal is to assist customers in shopping L'oreal products." }
 ];
+
+// Track current assistant type
+let currentAssistant = 'female';
 
 // Wait for DOM to be ready before accessing chatbot elements
 document.addEventListener("DOMContentLoaded", () => {
@@ -407,17 +410,84 @@ document.addEventListener("DOMContentLoaded", () => {
   const chatbotForm = document.getElementById("chatbotForm");
   const chatbotInput = document.getElementById("chatbotInput");
   const chatbotMessagesDiv = document.getElementById("chatbotMessages");
+  const femaleAssistant = document.getElementById("femaleAssistant");
+  const maleAssistant = document.getElementById("maleAssistant");
+  const assistantLogo = document.getElementById("assistantLogo");
+  const assistantTitle = document.getElementById("assistantTitle");
 
   // Toggle chat window visibility
   if (chatbotToggle && chatbotWindow) {
-    chatbotToggle.addEventListener("click", () => {
+    // Handle clicking outside of chatbot window
+    document.addEventListener("click", (e) => {
+      if (chatbotWindow.style.display !== "none" && // Only if chat window is open
+          !chatbotWindow.contains(e.target) && // Click not inside chat window
+          !chatbotToggle.contains(e.target)) { // Click not on toggle button
+        chatbotWindow.style.display = "none";
+      }
+    });
+
+    // Handle toggle button click
+    chatbotToggle.addEventListener("click", (e) => {
+      e.stopPropagation(); // Prevent document click from immediately closing
       if (chatbotWindow.style.display === "none") {
         chatbotWindow.style.display = "flex";
-        chatbotToggle.textContent = "Close Chat";
+        chatbotWindow.classList.add('show');
+        setTimeout(() => chatbotWindow.classList.remove('show'), 300);
         renderChatbotMessages();
       } else {
-        chatbotWindow.style.display = "none";
-        chatbotToggle.textContent = "Chat with AI";
+        chatbotWindow.classList.add('hide');
+        setTimeout(() => {
+          chatbotWindow.style.display = "none";
+          chatbotWindow.classList.remove('hide');
+        }, 300);
+      }
+    });
+
+    // Prevent clicks inside chat window from closing it
+    chatbotWindow.addEventListener("click", (e) => {
+      e.stopPropagation();
+    });
+
+    // Handle assistant type switching
+    femaleAssistant.addEventListener("click", () => {
+      if (currentAssistant !== 'female') {
+        currentAssistant = 'female';
+        femaleAssistant.classList.add('active');
+        maleAssistant.classList.remove('active');
+        assistantLogo.classList.add('switch');
+        assistantTitle.classList.add('switch');
+        setTimeout(() => {
+          assistantLogo.src = 'img/loreal-girl-logo.png';
+          assistantTitle.textContent = "L'Oréal Beauty Assistant";
+          assistantLogo.classList.remove('switch');
+          assistantTitle.classList.remove('switch');
+        }, 150);
+        // Reset conversation with new system message
+        chatbotMessages = [
+          { role: "system", content: "You are a helpful assistant for L'oreal customers, specializing in female beauty products. Your goal is to assist customers in shopping L'oreal products." }
+        ];
+        renderChatbotMessages();
+      }
+    });
+
+    maleAssistant.addEventListener("click", () => {
+      if (currentAssistant !== 'male') {
+        currentAssistant = 'male';
+        maleAssistant.classList.add('active');
+        femaleAssistant.classList.remove('active');
+        assistantLogo.classList.add('switch');
+        assistantTitle.classList.add('switch');
+        setTimeout(() => {
+          assistantLogo.src = 'img/loreal-guy-logo.png';
+          assistantTitle.textContent = "L'Oréal Men Expert";
+          assistantLogo.classList.remove('switch');
+          assistantTitle.classList.remove('switch');
+        }, 150);
+        // Reset conversation with new system message
+        chatbotMessages = [
+          { role: "system", content: "You are a helpful assistant for L'oreal customers, specializing in male grooming and beauty products. Your goal is to assist customers in shopping L'oreal men's products." }
+        ];
+        renderChatbotMessages();
       }
     });
   }
@@ -434,8 +504,13 @@ document.addEventListener("DOMContentLoaded", () => {
       renderChatbotMessages();
       chatbotInput.value = "";
 
-      // Show loading message
-      chatbotMessagesDiv.innerHTML += `<div style=\"color: #888;\">AI is typing...</div>`;
+      // Show typing indicator with animation
+      chatbotMessagesDiv.innerHTML += `
+        <div class="typing-indicator" style="margin: 8px 0;">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>`;
 
       // Fetch AI response from Cloudflare Worker
       try {
@@ -462,9 +537,24 @@ document.addEventListener("DOMContentLoaded", () => {
     chatbotMessagesDiv.innerHTML = "";
     chatbotMessages.forEach(msg => {
       if (msg.role === "user") {
-        chatbotMessagesDiv.innerHTML += `<div style=\"text-align: right; margin: 6px 0;\"><b>You:</b> ${msg.content}</div>`;
+        // User messages - right aligned with different color
+        chatbotMessagesDiv.innerHTML += `
+          <div style="display: flex; justify-content: flex-end; margin: 8px 0;">
+            <div style="background: #000; color: white; padding: 10px 14px; border-radius: 16px 16px 4px 16px; max-width: 80%; word-wrap: break-word;">
+              ${msg.content}
+            </div>
+          </div>`;
       } else if (msg.role === "assistant") {
-        chatbotMessagesDiv.innerHTML += `<div style=\"text-align: left; margin: 6px 0;\"><b>AI:</b> ${msg.content}</div>`;
+        // Assistant messages - left aligned with avatar
+        // Parse markdown in the assistant's messages
+        const parsedContent = marked.parse(msg.content);
+        chatbotMessagesDiv.innerHTML += `
+          <div style="display: flex; align-items: flex-start; margin: 8px 0; gap: 8px;">
+            <img src="${currentAssistant === 'male' ? 'img/loreal-guy-logo.png' : 'img/loreal-girl-logo.png'}" alt="L'Oréal Assistant" style="width: 28px; height: 28px; border-radius: 50%; object-fit: cover;">
+            <div style="background: white; padding: 10px 14px; border-radius: 16px 16px 16px 4px; max-width: 80%; word-wrap: break-word; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">
+              <div class="markdown-content" style="line-height: 1.5;">${parsedContent}</div>
+            </div>
+          </div>`;
       }
     });
     chatbotMessagesDiv.scrollTop = chatbotMessagesDiv.scrollHeight;

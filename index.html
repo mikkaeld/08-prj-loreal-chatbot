@@ -7,6 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/lib/marked.umd.js"></script>
 </head>
 <body class="font-sans">
     <!-- Header -->
@@ -30,8 +31,8 @@
             
             <!-- Main Navigation -->
             <nav class="flex justify-between items-center py-4">
-                <div class="text-2xl font-bold">
-                    <a href="#" class="text-black">L'ORÉAL</a>
+                <div class="logo">
+                    <img src="img/loreal-logo.png" alt="L'Oréal Logo">
                 </div>
                 
                 <div class="flex items-center space-x-8">
@@ -187,17 +188,34 @@
     <script src="script.js"></script>
 
     <!-- AI Chatbot Toggle Button -->
-    <button id="chatbotToggle" class="btn-base btn-primary" style="position: fixed; bottom: 24px; right: 24px; z-index: 1000;">
-      Chat with AI
+    <button id="chatbotToggle" class="chat-button">
+        <img src="img/loreal-logo.png" alt="Chat with AI">
     </button>
 
     <!-- AI Chatbot Window -->
-    <div id="chatbotWindow" style="display: none; position: fixed; bottom: 80px; right: 24px; width: 320px; max-height: 400px; background: #fff; border-radius: 8px; box-shadow: 0 2px 16px rgba(0,0,0,0.15); z-index: 1000; flex-direction: column;">
-      <div style="padding: 12px; border-bottom: 1px solid #eee; font-weight: bold;">AI Chatbot</div>
-      <div id="chatbotMessages" style="flex: 1; padding: 12px; overflow-y: auto; font-size: 0.95rem; min-height: 120px;"></div>
-      <form id="chatbotForm" style="display: flex; border-top: 1px solid #eee;">
-        <input id="chatbotInput" type="text" placeholder="Type your message..." style="flex: 1; padding: 8px; border: none; outline: none;">
-        <button type="submit" class="btn-base btn-primary" style="border-radius: 0 0 8px 0;">Send</button>
+    <div id="chatbotWindow" style="display: none; position: fixed; bottom: 80px; right: 24px; width: 320px; height: 450px; background: #fff; border-radius: 12px; box-shadow: 0 2px 16px rgba(0,0,0,0.15); z-index: 1000; flex-direction: column; overflow: hidden;">
+      <!-- Chat Header -->
+      <div style="padding: 12px 16px; border-bottom: 1px solid #eee; background: #000; color: white;">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+          <img id="assistantLogo" src="img/loreal-girl-logo.png" alt="L'Oréal Assistant" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover;">
+          <div>
+            <div id="assistantTitle" style="font-weight: bold;">L'Oréal Beauty Assistant</div>
+            <div style="font-size: 0.8rem; opacity: 0.8;">Always here to help</div>
+          </div>
+        </div>
+        <div style="display: flex; justify-content: center; gap: 10px; padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.1);">
+          <button id="femaleAssistant" style="padding: 4px 8px; border-radius: 12px; font-size: 0.8rem; background: rgba(255,255,255,0.2);" class="active">Female Products</button>
+          <button id="maleAssistant" style="padding: 4px 8px; border-radius: 12px; font-size: 0.8rem;">Male Products</button>
+        </div>
+      </div>
+      
+      <!-- Chat Messages -->
+      <div id="chatbotMessages" style="flex: 1; padding: 16px; overflow-y: auto; font-size: 0.95rem; background-color: #f8f9fa;"></div>
+      
+      <!-- Chat Input -->
+      <form id="chatbotForm" style="display: flex; border-top: 1px solid #eee; padding: 12px; background: white;">
+        <input id="chatbotInput" type="text" placeholder="Type your message..." style="flex: 1; padding: 8px 12px; border: 1px solid #eee; border-radius: 20px; margin-right: 8px; outline: none;">
+        <button type="submit" class="btn-base btn-primary" style="border-radius: 20px; padding: 8px 16px;">Send</button>
       </form>
     </div>
 
