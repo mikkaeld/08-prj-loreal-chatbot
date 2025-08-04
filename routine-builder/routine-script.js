@@ -431,7 +431,7 @@ Make the routine practical and easy to follow.`;
     messageElement = document.getElementById(`msg-${messageId}`);
 
     // Send full conversation history including the routine request
-    const response = await fetch('https://nonchalant-worker.mikkaeldumancas.workers.dev/', {
+    const response = await fetch('https://chill-worker.mikkaeldumancas.workers.dev/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ messages: conversationHistory })
