@@ -514,8 +514,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Fetch AI response from Cloudflare Worker
       try {
-        // Replace with your actual Cloudflare Worker URL
-        const response = await fetch("https://chill-worker.mikkaeldumancas.workers.dev/", {
+        // Updated Cloudflare Worker URL
+        const response = await fetch("https://nonchalant-worker.mikkaeldumancas.workers.dev/", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ messages: chatbotMessages })

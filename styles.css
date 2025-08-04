@@ -2,6 +2,17 @@
    L'Oréal Website Clone - Custom Styles
    ========================================================================== */
 
+/* L'Oréal Brand Colors */
+:root {
+    --loreal-gold: #D4AF37;
+    --loreal-burgundy: #8B1538;
+    --loreal-rose-gold: #E8B4A0;
+    --loreal-champagne: #F7E7CE;
+    --loreal-deep-purple: #4A154B;
+    --loreal-coral: #FF6B6B;
+    --loreal-gradient: linear-gradient(135deg, var(--loreal-gold) 0%, var(--loreal-burgundy) 100%);
+}
+
 /* Modular Button System
    ========================================================================== */
 
@@ -19,35 +30,40 @@
     font-size: inherit;
 }
 
-/* Primary button - black background */
+/* Primary button - L'Oréal gradient background */
 .btn-primary {
-    background-color: #000;
+    background: var(--loreal-gradient);
     color: #fff;
+    border: none;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
 }
 
 .btn-primary:hover {
-    background-color: #374151;
+    background: linear-gradient(135deg, var(--loreal-burgundy) 0%, var(--loreal-gold) 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
 }
 
 .btn-primary:focus {
-    outline: 2px solid #000;
+    outline: 2px solid var(--loreal-gold);
     outline-offset: 2px;
 }
 
-/* Secondary button - outlined with fill on hover */
+/* Secondary button - outlined with L'Oréal colors */
 .btn-secondary {
-    border: 2px solid #000;
-    color: #000;
+    border: 2px solid var(--loreal-burgundy);
+    color: var(--loreal-burgundy);
     background-color: transparent;
 }
 
 .btn-secondary:hover {
-    background-color: #000;
+    background: var(--loreal-gradient);
     color: #fff;
+    border-color: var(--loreal-gold);
 }
 
 .btn-secondary:focus {
-    outline: 2px solid #000;
+    outline: 2px solid var(--loreal-burgundy);
     outline-offset: 2px;
 }
 
@@ -68,23 +84,25 @@
     outline-offset: 2px;
 }
 
-/* Link button - text only */
+/* Link button - L'Oréal burgundy text */
 .btn-link {
     font-weight: 500;
-    color: #000;
+    color: var(--loreal-burgundy);
     background: none;
     border: none;
     cursor: pointer;
     text-decoration: none;
     padding: 0;
+    transition: all 0.3s ease;
 }
 
 .btn-link:hover {
+    color: var(--loreal-gold);
     text-decoration: underline;
 }
 
 .btn-link:focus {
-    outline: 2px solid #000;
+    outline: 2px solid var(--loreal-burgundy);
     outline-offset: 2px;
 }
 
@@ -106,11 +124,44 @@
     }
 }
 
+/* Subtle shake animation for the perfect routine button */
+@keyframes subtleShake {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-2deg); }
+    75% { transform: rotate(2deg); }
+}
+
+.shake-animation {
+    animation: subtleShake 2s ease-in-out infinite;
+}
+
+.shake-animation:hover {
+    animation: none; /* Stop shaking on hover */
+}
+
 /* Custom Backgrounds
    ========================================================================== */
 
 .hero-gradient {
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    background: 
+        linear-gradient(135deg, rgba(247, 231, 206, 0.9) 0%, rgba(232, 180, 160, 0.8) 50%, rgba(212, 175, 55, 0.7) 100%),
+        url('img/bg-img-1.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* L'Oréal inspired gradients for featured sections */
+.loreal-gradient-1 {
+    background: linear-gradient(135deg, #FFE4E1 0%, var(--loreal-rose-gold) 100%);
+}
+
+.loreal-gradient-2 {
+    background: linear-gradient(135deg, #E6E6FA 0%, var(--loreal-deep-purple) 100%);
+}
+
+.loreal-gradient-3 {
+    background: linear-gradient(135deg, #FFF8DC 0%, var(--loreal-gold) 100%);
 }
 
 /* Responsive Design Enhancements
@@ -255,10 +306,10 @@ html {
     width: 60px !important;
     height: 60px !important;
     border-radius: 50% !important;
-    background-color: white !important;
+    background: var(--loreal-gradient) !important;
     cursor: pointer !important;
-    border: 2px solid #000 !important;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    border: 3px solid var(--loreal-gold) !important;
+    box-shadow: 0 4px 20px rgba(212, 175, 55, 0.4);
     transition: all 0.3s ease;
     padding: 0 !important;
     display: flex !important;
@@ -271,11 +322,13 @@ html {
     width: 80% !important;
     height: 80% !important;
     object-fit: contain !important;
+    filter: brightness(0) invert(1); /* Make logo white */
 }
 
 .chat-button:hover {
     transform: scale(1.1);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 6px 25px rgba(212, 175, 55, 0.6);
+    border-color: var(--loreal-champagne);
 }
 
 /* Markdown Styles in Chat */
@@ -383,8 +436,46 @@ html {
 
 /* Chatbot Window Animations */
 #chatbotWindow {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    transform-origin: bottom right;
+    will-change: width, height;
+    position: fixed;
+    bottom: 80px;
+    right: 24px;
+    width: 320px;
+    height: 450px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.15);
+    z-index: 1000;
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Custom resize handle */
+.resize-handle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    cursor: nw-resize;
+    z-index: 1002;
+}
+
+.resize-handle::before {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 8px;
+    height: 8px;
+    border-left: 2px solid rgba(255, 255, 255, 0.6);
+    border-top: 2px solid rgba(255, 255, 255, 0.6);
+    transition: opacity 0.2s;
+}
+
+.resize-handle:hover::before {
+    border-color: rgba(255, 255, 255, 0.9);
 }
 
 #chatbotWindow.show {
@@ -438,4 +529,29 @@ html {
 
 #assistantLogo.switch, #assistantTitle.switch {
     animation: fadeIn 0.3s ease;
+}
+
+/* Typewriter Animation */
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.typewriter-cursor::after {
+    content: '|';
+    margin-left: 2px;
+    animation: blink 1s infinite;
+}
+
+.typewriter-char {
+    opacity: 0;
+    transition: opacity 0.05s ease;
+}
+
+.typewriter-char.visible {
+    opacity: 1;
+}
+
+.assistant-message .message-content {
+    opacity: 0;
 }
