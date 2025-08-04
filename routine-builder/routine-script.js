@@ -531,7 +531,7 @@ chatForm.addEventListener("submit", async (e) => {
     });
 
     // Send full conversation history to Worker (Worker handles system prompt)
-    const response = await fetch('https://nonchalant-worker.mikkaeldumancas.workers.dev/', {
+    const response = await fetch('https://chill-worker.mikkaeldumancas.workers.dev/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
